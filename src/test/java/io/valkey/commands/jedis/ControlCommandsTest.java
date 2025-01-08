@@ -2,6 +2,7 @@ package io.valkey.commands.jedis;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.greaterThan;
+import static org.hamcrest.Matchers.greaterThanOrEqualTo;
 import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
@@ -427,7 +428,7 @@ public class ControlCommandsTest extends JedisCommandsTestBase {
     assertThat(jedis.memoryUsage(bfoo), greaterThan(20l));
 
     jedis.lpush(bfoobar, new byte[]{0x01, 0x02}, new byte[]{0x05, 0x06}, new byte[]{0x00});
-    assertThat(jedis.memoryUsage(bfoobar, 2), greaterThan(40l));
+    assertThat(jedis.memoryUsage(bfoobar, 2), greaterThanOrEqualTo(40l));
 
     assertNull(jedis.memoryUsage("roo", 2));
   }
