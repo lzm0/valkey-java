@@ -626,12 +626,8 @@ public abstract class AllKindOfValuesCommandsTestBase extends UnifiedJedisComman
     ScanResult<String> scanResult;
 
     scanResult = jedis.scan(ScanParams.SCAN_POINTER_START, pagingParams, "string");
-    assertFalse(scanResult.isCompleteIteration());
-    int page1Count = scanResult.getResult().size();
-    scanResult = jedis.scan(scanResult.getCursor(), pagingParams, "string");
-    assertTrue(scanResult.isCompleteIteration());
-    int page2Count = scanResult.getResult().size();
-    assertEquals(4, page1Count + page2Count);
+    assertTrue(scanResult.isCompleteIteration()); // https://github.com/valkey-io/valkey/issues/1490
+    assertEquals(4, scanResult.getResult().size());
 
 
     scanResult = jedis.scan(ScanParams.SCAN_POINTER_START, noParams, "hash");
@@ -658,12 +654,8 @@ public abstract class AllKindOfValuesCommandsTestBase extends UnifiedJedisComman
     jedis.set("g", "g");
 
     binaryResult = jedis.scan(ScanParams.SCAN_POINTER_START_BINARY, pagingParams, string);
-    assertFalse(binaryResult.isCompleteIteration());
-    page1Count = binaryResult.getResult().size();
-    binaryResult = jedis.scan(binaryResult.getCursorAsBytes(), pagingParams, string);
     assertTrue(binaryResult.isCompleteIteration());
-    page2Count = binaryResult.getResult().size();
-    assertEquals(4, page1Count + page2Count);
+    assertEquals(4, binaryResult.getResult().size());
 
     binaryResult = jedis.scan(ScanParams.SCAN_POINTER_START_BINARY, noParams, hash);
     AssertUtil.assertByteArrayListEquals(Collections.singletonList(new byte[]{98}), binaryResult.getResult());

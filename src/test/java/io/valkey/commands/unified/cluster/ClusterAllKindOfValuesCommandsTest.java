@@ -224,12 +224,8 @@ public class ClusterAllKindOfValuesCommandsTest extends AllKindOfValuesCommandsT
     ScanResult<String> scanResult;
 
     scanResult = jedis.scan(ScanParams.SCAN_POINTER_START, pagingParams, "string");
-    assertFalse(scanResult.isCompleteIteration());
-    int page1Count = scanResult.getResult().size();
-    scanResult = jedis.scan(scanResult.getCursor(), pagingParams, "string");
-    assertTrue(scanResult.isCompleteIteration());
-    int page2Count = scanResult.getResult().size();
-    assertEquals(4, page1Count + page2Count);
+    assertTrue(scanResult.isCompleteIteration()); // https://github.com/valkey-io/valkey/issues/1490
+    assertEquals(4, scanResult.getResult().size());
 
 
     scanResult = jedis.scan(ScanParams.SCAN_POINTER_START, noCount, "hash");
