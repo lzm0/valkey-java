@@ -291,6 +291,11 @@ public class UnifiedJedis implements JedisCommands, JedisBinaryCommands,
     this(new RetryableCommandExecutor(provider, maxAttempts, maxTotalRetriesDuration), provider);
   }
 
+  public UnifiedJedis(ConnectionProvider provider, int maxAttempts, Duration maxTotalRetriesDuration,
+      ExceptionHandler handler) {
+    this(new RetryableCommandExecutor(provider, maxAttempts, maxTotalRetriesDuration, handler), provider);
+  }
+
   /**
    * Constructor which supports multiple cluster/database endpoints each with their own isolated connection pool.
    * <p>
