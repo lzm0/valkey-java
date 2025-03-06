@@ -6,7 +6,9 @@ import java.util.concurrent.TimeUnit;
 
 import io.valkey.CommandObject;
 import io.valkey.Connection;
+import io.valkey.ExceptionHandler;
 import io.valkey.annots.VisibleForTesting;
+import io.valkey.exceptions.JedisDataException;
 import io.valkey.util.IOUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -22,12 +24,19 @@ public class RetryableCommandExecutor implements CommandExecutor {
   protected final ConnectionProvider provider;
   protected final int maxAttempts;
   protected final Duration maxTotalRetriesDuration;
+  protected final ExceptionHandler handler;
 
   public RetryableCommandExecutor(ConnectionProvider provider, int maxAttempts,
       Duration maxTotalRetriesDuration) {
+    this(provider, maxAttempts, maxTotalRetriesDuration, null);
+  }
+
+  public RetryableCommandExecutor(ConnectionProvider provider, int maxAttempts, Duration maxTotalRetriesDuration,
+      ExceptionHandler handler) {
     this.provider = provider;
     this.maxAttempts = maxAttempts;
     this.maxTotalRetriesDuration = maxTotalRetriesDuration;
+    this.handler = handler;
   }
 
   @Override
@@ -57,6 +66,11 @@ public class RetryableCommandExecutor implements CommandExecutor {
         boolean reset = handleConnectionProblem(attemptsLeft - 1, consecutiveConnectionFailures, deadline);
         if (reset) {
           consecutiveConnectionFailures = 0;
+        }
+      } catch (JedisException e) {
+        lastException = e;
+        if (handler != null) {
+          handler.handleException(e);
         }
       } finally {
         if (connection != null) {
