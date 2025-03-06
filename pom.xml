@@ -145,6 +145,13 @@
 			<version>${resilience4j.version}</version>
 			<optional>true</optional>
 		</dependency>
+
+        <!-- netty for async-->
+		<dependency>
+			<groupId>io.netty</groupId>
+			<artifactId>netty-all</artifactId>
+			<version>4.1.100.Final</version>
+		</dependency>
 	</dependencies>
 
 	<build>
