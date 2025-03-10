@@ -13,8 +13,10 @@ import io.valkey.args.ExpiryOption;
 import io.valkey.args.FlushMode;
 import io.valkey.args.FunctionRestorePolicy;
 import io.valkey.args.GeoUnit;
+import io.valkey.args.LatencyEvent;
 import io.valkey.args.ListDirection;
 import io.valkey.args.ListPosition;
+import io.valkey.args.SaveMode;
 import io.valkey.args.SortedSetOption;
 import io.valkey.bloom.BFInsertParams;
 import io.valkey.bloom.BFReserveParams;
@@ -39,6 +41,7 @@ import io.valkey.params.MigrateParams;
 import io.valkey.params.RestoreParams;
 import io.valkey.params.ScanParams;
 import io.valkey.params.SetParams;
+import io.valkey.params.ShutdownParams;
 import io.valkey.params.SortingParams;
 import io.valkey.params.XAddParams;
 import io.valkey.params.XAutoClaimParams;
@@ -54,6 +57,8 @@ import io.valkey.params.ZRangeParams;
 import io.valkey.resps.FunctionStats;
 import io.valkey.resps.GeoRadiusResponse;
 import io.valkey.resps.LCSMatchResult;
+import io.valkey.resps.LatencyHistoryInfo;
+import io.valkey.resps.LatencyLatestInfo;
 import io.valkey.resps.LibraryInfo;
 import io.valkey.resps.ScanResult;
 import io.valkey.resps.StreamConsumerInfo;
@@ -138,16 +143,132 @@ public class CommandObjects {
     return PING_COMMAND_OBJECT;
   }
 
+  public final CommandObject<String> ping(String message) {
+    return new CommandObject<>(commandArguments(Command.PING).add(message), BuilderFactory.STRING);
+  }
+
+  public final CommandObject<String> echo(String message) {
+    return new CommandObject<>(commandArguments(Command.ECHO).add(message), BuilderFactory.STRING);
+  }
+
+  public final CommandObject<byte[]> echo(byte[] message) {
+    return new CommandObject<>(commandArguments(Command.ECHO).add(message), BuilderFactory.BINARY);
+  }
+
   private final CommandObject<String> FLUSHALL_COMMAND_OBJECT = new CommandObject<>(commandArguments(Command.FLUSHALL), BuilderFactory.STRING);
 
   public final CommandObject<String> flushAll() {
     return FLUSHALL_COMMAND_OBJECT;
   }
 
+  public final CommandObject<String> flushAll(FlushMode flushMode) {
+    return new CommandObject<>(commandArguments(Command.FLUSHALL).add(flushMode), BuilderFactory.STRING);
+  }
+
   private final CommandObject<String> FLUSHDB_COMMAND_OBJECT = new CommandObject<>(commandArguments(Command.FLUSHDB), BuilderFactory.STRING);
 
   public final CommandObject<String> flushDB() {
     return FLUSHDB_COMMAND_OBJECT;
+  }
+
+  public final CommandObject<String> flushDB(FlushMode mode) {
+    return new CommandObject<>(commandArguments(Command.FLUSHDB).add(mode), BuilderFactory.STRING);
+  }
+
+  public final CommandObject<String> auth(String password) {
+    return new CommandObject<>(commandArguments(Command.AUTH).add(password), BuilderFactory.STRING);
+  }
+
+  public final CommandObject<String> auth(String user, String password) {
+    return new CommandObject<>(commandArguments(Command.AUTH).add(user).add(password), BuilderFactory.STRING);
+  }
+
+  public final CommandObject<String> save() {
+    return new CommandObject<>(commandArguments(Command.SAVE), BuilderFactory.STRING);
+  }
+
+  public final CommandObject<String> bgsave() {
+    return new CommandObject<>(commandArguments(Command.BGSAVE), BuilderFactory.STRING);
+  }
+
+  public final CommandObject<String> bgsave(SaveMode scheduleFlag) {
+    return new CommandObject<>(commandArguments(Command.BGSAVE).add(scheduleFlag), BuilderFactory.STRING);
+  }
+
+  public final CommandObject<Long> lastsave() {
+    return new CommandObject<>(commandArguments(Command.LASTSAVE), BuilderFactory.LONG);
+  }
+
+  public final CommandObject<String> shutdown() {
+    return new CommandObject<>(commandArguments(Command.SHUTDOWN), BuilderFactory.STRING);
+  }
+
+  public final CommandObject<String> shutdown(ShutdownParams params) {
+    return new CommandObject<>(commandArguments(Command.SHUTDOWN).addParams(params), BuilderFactory.STRING);
+  }
+
+  public final CommandObject<String> info() {
+    return new CommandObject<>(commandArguments(Command.INFO), BuilderFactory.STRING);
+  }
+
+  public final CommandObject<String> info(String section) {
+    return new CommandObject<>(commandArguments(Command.INFO).add(section), BuilderFactory.STRING);
+  }
+
+  public final CommandObject<String> slaveof(String host, int port) {
+    return new CommandObject<>(commandArguments(Command.SLAVEOF).add(host).add(port), BuilderFactory.STRING);
+  }
+
+  public final CommandObject<String> replicaof(String host, int port) {
+    return new CommandObject<>(commandArguments(Command.REPLICAOF).add(host).add(port), BuilderFactory.STRING);
+  }
+
+  public final CommandObject<List<Object>> role() {
+    return new CommandObject<>(commandArguments(Command.ROLE), BuilderFactory.RAW_OBJECT_LIST);
+  }
+
+  public final CommandObject<String> debugObject(String key) {
+    return new CommandObject<>(commandArguments(Command.DEBUG).add(Keyword.OBJECT).key(key), BuilderFactory.STRING);
+  }
+
+  public final CommandObject<String> debugSegfault() {
+    return new CommandObject<>(commandArguments(Command.DEBUG).add(Keyword.SEGFAULT), BuilderFactory.STRING);
+  }
+
+  public final CommandObject<String> memoryDoctor() {
+    return new CommandObject<>(commandArguments(Command.MEMORY).add(Keyword.DOCTOR), BuilderFactory.STRING);
+  }
+
+  public final CommandObject<String> memoryMallocStats() {
+    return new CommandObject<>(commandArguments(Command.MEMORY).add(Keyword.MALLOC).add(Keyword.STATS), BuilderFactory.STRING);
+  }
+
+  public final CommandObject<String> memoryPurge() {
+    return new CommandObject<>(commandArguments(Command.MEMORY).add(Keyword.PURGE), BuilderFactory.STRING);
+  }
+
+  public final CommandObject<Map<String, Object>> memoryStats() {
+    return new CommandObject<>(commandArguments(Command.MEMORY).add(Keyword.STATS), BuilderFactory.ENCODED_OBJECT_MAP);
+  }
+
+  public final CommandObject<Map<String, LatencyLatestInfo>> latencyLatest() {
+    return new CommandObject<>(commandArguments(Command.LATENCY).add(Keyword.LATEST), BuilderFactory.LATENCY_LATEST_RESPONSE);
+  }
+
+  public final CommandObject<List<LatencyHistoryInfo>> latencyHistory(LatencyEvent event) {
+    return new CommandObject<>(commandArguments(Command.LATENCY).add(Keyword.HISTORY).add(event), BuilderFactory.LATENCY_HISTORY_RESPONSE);
+  }
+
+  public final CommandObject<Long> latencyReset(LatencyEvent... events) {
+    return new CommandObject<>(commandArguments(Command.LATENCY).add(Keyword.RESET).addObjects((Object[]) events), BuilderFactory.LONG);
+  }
+
+  public final CommandObject<String> latencyGraph(LatencyEvent event) {
+    return new CommandObject<>(commandArguments(Command.LATENCY).add(Keyword.GRAPH).add(event), BuilderFactory.STRING);
+  }
+
+  public final CommandObject<String> latencyDoctor() {
+    return new CommandObject<>(commandArguments(Command.LATENCY).add(Keyword.DOCTOR), BuilderFactory.STRING);
   }
 
   public final CommandObject<String> configSet(String parameter, String value) {
