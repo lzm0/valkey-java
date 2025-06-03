@@ -330,4 +330,15 @@ public class JedisTest extends JedisCommandsTestBase {
     }
   }
 
+  @Test
+  public void bgsaveCancel() {
+    try {
+      jedis.auth("foobared");
+      String result = jedis.bgsaveCancel();
+      assertEquals("Background saving is currently not in progress or scheduled", result);
+    } catch (JedisException e) {
+      assertTrue(e.getMessage().contains("Background saving is currently not in progress or scheduled"));
+    }
+  }
+
 }
