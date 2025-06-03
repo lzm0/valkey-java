@@ -20,6 +20,10 @@ public interface StringPipelineCommands extends BitPipelineCommands {
 
   Response<String> setGet(String key, String value, SetParams params);
 
+  Response<String> setIfeq(String key, String value, String compareValue);
+
+  Response<Boolean> delIfeq(String key, String compareValue);
+
   Response<String> getDel(String key);
 
   Response<String> getEx(String key, GetExParams params);

@@ -520,6 +520,14 @@ public class CommandObjects {
         BuilderFactory.STRING);
   }
 
+  public final CommandObject<String> setIfeq(String key, String value, String compareValue) {
+    return new CommandObject<>(commandArguments(Command.SET).key(key).add(value).add(Keyword.IFEQ).add(compareValue), BuilderFactory.STRING);
+  }
+
+  public final CommandObject<Boolean> delIfeq(String key, String compareValue) {
+    return new CommandObject<>(commandArguments(Command.DELIFEQ).key(key).add(compareValue), BuilderFactory.BOOLEAN);
+  }
+
   public final CommandObject<String> getDel(String key) {
     return new CommandObject<>(commandArguments(Command.GETDEL).key(key), BuilderFactory.STRING);
   }
@@ -539,6 +547,14 @@ public class CommandObjects {
   public final CommandObject<byte[]> setGet(byte[] key, byte[] value, SetParams params) {
     return new CommandObject<>(commandArguments(Command.SET).key(key).add(value).addParams(params).add(Keyword.GET),
         BuilderFactory.BINARY);
+  }
+
+  public final CommandObject<String> setIfeq(byte[] key, byte[] value, byte[] compareValue) {
+    return new CommandObject<>(commandArguments(Command.SET).key(key).add(value).add(Keyword.IFEQ).add(compareValue), BuilderFactory.STRING);
+  }
+
+  public final CommandObject<Boolean> delIfeq(byte[] key, byte[] compareValue) {
+    return new CommandObject<>(commandArguments(Command.DELIFEQ).key(key).add(compareValue), BuilderFactory.BOOLEAN);
   }
 
   public final CommandObject<byte[]> getDel(byte[] key) {

@@ -20,6 +20,10 @@ public interface StringPipelineBinaryCommands extends BitPipelineBinaryCommands 
 
   Response<byte[]> setGet(byte[] key, byte[] value, SetParams params);
 
+  Response<String> setIfeq(byte[] key, byte[] value, byte[] compareValue);
+
+  Response<Boolean> delIfeq(byte[] key, byte[] compareValue);
+
   Response<byte[]> getDel(byte[] key);
 
   Response<byte[]> getEx(byte[] key, GetExParams params);

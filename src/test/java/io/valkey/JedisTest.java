@@ -2,6 +2,7 @@ package io.valkey;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertSame;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
@@ -330,4 +331,41 @@ public class JedisTest extends JedisCommandsTestBase {
     }
   }
 
+  @Test
+  public void setIfeq() {
+    // Test setting when key doesn't exist
+    String status = jedis.setIfeq("foo", "bar", "baz");
+    assertNull(status);  // Should return null when key doesn't exist
+    assertNull(jedis.get("foo"));  // Key should not be set
+
+    // Test setting when key exists and value matches
+    jedis.set("foo", "bar");
+    status = jedis.setIfeq("foo", "newbar", "bar");
+    assertEquals("OK", status);
+    assertEquals("newbar", jedis.get("foo"));
+
+    // Test not setting when key exists but value doesn't match
+    status = jedis.setIfeq("foo", "finalbar", "wrongvalue");
+    assertNull(status);
+    assertEquals("newbar", jedis.get("foo"));
+  }
+
+  @Test
+  public void delIfeq() {
+    // Test deleting when key exists and value matches
+    jedis.set("foo", "bar");
+    Boolean result = jedis.delIfeq("foo", "bar");
+    assertTrue(result);
+    assertNull(jedis.get("foo"));
+
+    // Test not deleting when key exists but value doesn't match
+    jedis.set("foo", "bar");
+    result = jedis.delIfeq("foo", "wrongvalue");
+    assertFalse(result);
+    assertEquals("bar", jedis.get("foo"));
+
+    // Test not deleting when key doesn't exist
+    result = jedis.delIfeq("nonexistent", "anyvalue");
+    assertFalse(result);
+  }
 }

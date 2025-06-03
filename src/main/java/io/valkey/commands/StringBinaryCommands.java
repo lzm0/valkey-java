@@ -19,6 +19,10 @@ public interface StringBinaryCommands extends BitBinaryCommands {
 
   byte[] setGet(byte[] key, byte[] value, SetParams params);
 
+  String setIfeq(byte[] key, byte[] value, byte[] compareValue);
+
+  Boolean delIfeq(byte[] key, byte[] compareValue);
+
   byte[] getDel(byte[] key);
 
   byte[] getEx(byte[] key, GetExParams params);

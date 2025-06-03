@@ -356,6 +356,16 @@ public abstract class PipeliningBase
   }
 
   @Override
+  public Response<String> setIfeq(String key, String value, String compareValue) {
+    return appendCommand(commandObjects.setIfeq(key, value, compareValue));
+  }
+
+  @Override
+  public Response<Boolean> delIfeq(String key, String compareValue) {
+    return appendCommand(commandObjects.delIfeq(key, compareValue));
+  }
+
+  @Override
   public Response<String> getDel(String key) {
     return appendCommand(commandObjects.getDel(key));
   }
@@ -3206,6 +3216,16 @@ public abstract class PipeliningBase
   @Override
   public Response<byte[]> setGet(byte[] key, byte[] value, SetParams params) {
     return appendCommand(commandObjects.setGet(key, value, params));
+  }
+
+  @Override
+  public Response<String> setIfeq(byte[] key, byte[] value, byte[] compareValue) {
+    return appendCommand(commandObjects.setIfeq(key, value, compareValue));
+  }
+
+  @Override
+  public Response<Boolean> delIfeq(byte[] key, byte[] compareValue) {
+    return appendCommand(commandObjects.delIfeq(key, compareValue));
   }
 
   @Override

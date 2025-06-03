@@ -854,6 +854,16 @@ public class UnifiedJedis implements JedisCommands, JedisBinaryCommands,
   }
 
   @Override
+  public String setIfeq(String key, String value, String compareValue) {
+    return executeCommand(commandObjects.setIfeq(key, value, compareValue));
+  }
+
+  @Override
+  public Boolean delIfeq(String key, String compareValue) {
+    return executeCommand(commandObjects.delIfeq(key, compareValue));
+  }
+
+  @Override
   public String getDel(String key) {
     return executeCommand(commandObjects.getDel(key));
   }
@@ -886,6 +896,16 @@ public class UnifiedJedis implements JedisCommands, JedisBinaryCommands,
   @Override
   public byte[] setGet(byte[] key, byte[] value, SetParams params) {
     return executeCommand(commandObjects.setGet(key, value, params));
+  }
+
+  @Override
+  public String setIfeq(byte[] key, byte[] value, byte[] compareValue) {
+    return executeCommand(commandObjects.setIfeq(key, value, compareValue));
+  }
+
+  @Override
+  public Boolean delIfeq(byte[] key, byte[] compareValue) {
+    return executeCommand(commandObjects.delIfeq(key, compareValue));
   }
 
   @Override

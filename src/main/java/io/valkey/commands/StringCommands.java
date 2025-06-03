@@ -51,6 +51,23 @@ public interface StringCommands extends BitCommands {
   String setGet(String key, String value, SetParams params);
 
   /**
+   * <b><a href="https://valkey.io/commands/set/">Valkey Set IFEQ Command</a></b>
+   * @param key the key
+   * @param value the value
+   * @param compareValue the value to compare
+   * @return OK if the key was set, nil(Java's null) if compareValue does not match exists key or key does not exist
+   */
+  String setIfeq(String key, String value, String compareValue);
+
+  /**
+   * <b><a href="https://valkey.io/commands/delifeq/">Valkey DelIFEQ Command</a></b>
+   * @param key the key
+   * @param compareValue the compare value
+   * @return true if the key was deleted, false if the key was not deleted or key does not exist
+   */
+  Boolean delIfeq(String key, String compareValue);
+
+  /**
    * <b><a href="http://redis.io/commands/getdel">GetDel Command</a></b>
    * Get the value of key and delete the key. This command is similar to GET, except for the fact
    * that it also deletes the key on success (if and only if the key's value type is a string).

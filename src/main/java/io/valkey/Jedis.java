@@ -582,6 +582,18 @@ public class Jedis implements ServerCommands, DatabaseCommands, JedisCommands, J
     return connection.executeCommand(commandObjects.setGet(key, value, params));
   }
 
+  @Override
+  public String setIfeq(byte[] key, byte[] value, byte[] compareValue) {
+    checkIsInMultiOrPipeline();
+    return connection.executeCommand(commandObjects.setIfeq(key, value, compareValue));
+  }
+
+  @Override
+  public Boolean delIfeq(byte[] key, byte[] compareValue) {
+    checkIsInMultiOrPipeline();
+    return connection.executeCommand(commandObjects.delIfeq(key, compareValue));
+  }
+
   /**
    * Get the value of key and delete the key. This command is similar to GET, except for the fact
    * that it also deletes the key on success (if and only if the key's value type is a string).
@@ -5024,6 +5036,18 @@ public class Jedis implements ServerCommands, DatabaseCommands, JedisCommands, J
   public String setGet(final String key, final String value, final SetParams params) {
     checkIsInMultiOrPipeline();
     return connection.executeCommand(commandObjects.setGet(key, value, params));
+  }
+
+  @Override
+  public String setIfeq(String key, String value, String compareValue) {
+    checkIsInMultiOrPipeline();
+    return connection.executeCommand(commandObjects.setIfeq(key, value, compareValue));
+  }
+
+  @Override
+  public Boolean delIfeq(String key, String compareValue) {
+    checkIsInMultiOrPipeline();
+    return connection.executeCommand(commandObjects.delIfeq(key, compareValue));
   }
 
   /**
