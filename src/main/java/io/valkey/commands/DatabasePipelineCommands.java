@@ -82,7 +82,7 @@ public interface DatabasePipelineCommands {
   Response<String> migrate(String host, int port, int destinationDB, int timeout, MigrateParams params, byte[]... keys);
 
   /**
-   * <b><a href="http://redis.io/commands/migrate">Migrate Command</a></b>
+   * <b><a href="https://valkey.io/commands/migrate">Migrate Command</a></b>
    * Atomically transfer a key from a source Redis instance to a destination Redis instance.
    * On success the key is deleted from the original instance and is guaranteed to exist in
    * the target instance.
@@ -98,7 +98,7 @@ public interface DatabasePipelineCommands {
   Response<String> migrate(String host, int port, String key, int destinationDB, int timeout);
 
   /**
-   * <b><a href="http://redis.io/commands/migrate">Migrate Command</a></b>
+   * <b><a href="https://valkey.io/commands/migrate">Migrate Command</a></b>
    * Atomically transfer a key from a source Redis instance to a destination Redis instance.
    * On success the key is deleted from the original instance and is guaranteed to exist in
    * the target instance.

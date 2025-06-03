@@ -161,13 +161,13 @@ public interface ClientCommands {
   String clientNoEvictOff();
 
   /**
-   * Turn on <a href="https://redis.io/commands/client-no-touch/">CLIENT NO-TOUCH</a>
+   * Turn on <a href="https://valkey.io/commands/client-no-touch">CLIENT NO-TOUCH</a>
    * @return OK
    */
   String clientNoTouchOn();
 
   /**
-   * Turn off <a href="https://redis.io/commands/client-no-touch/">CLIENT NO-TOUCH</a>
+   * Turn off <a href="https://valkey.io/commands/client-no-touch">CLIENT NO-TOUCH</a>
    * @return OK
    */
   String clientNoTouchOff();

@@ -13,7 +13,7 @@ import io.valkey.resps.ScanResult;
 public interface KeyCommands {
 
   /**
-   * <b><a href="http://redis.io/commands/exists">Exists Command</a></b>
+   * <b><a href="https://valkey.io/commands/exists">Exists Command</a></b>
    * Test if the specified key exist.
    * <p>
    * Time complexity: O(1)
@@ -23,7 +23,7 @@ public interface KeyCommands {
   boolean exists(String key);
 
   /**
-   * <b><a href="http://redis.io/commands/exists">Exists Command</a></b>
+   * <b><a href="https://valkey.io/commands/exists">Exists Command</a></b>
    * Test if the specified keys exist.
    * <p>
    * Time complexity: O(N)
@@ -33,7 +33,7 @@ public interface KeyCommands {
   long exists(String... keys);
 
   /**
-   * <b><a href="http://redis.io/commands/persist">Persist Command</a></b>
+   * <b><a href="https://valkey.io/commands/persist">Persist Command</a></b>
    * Undo a {@link KeyCommands#expire(String, long) expire} at turning the expire key into a normal key.
    * <p>
    * Time complexity: O(1)
@@ -43,7 +43,7 @@ public interface KeyCommands {
   long persist(String key);
 
   /**
-   * <b><a href="http://redis.io/commands/type">Type Command</a></b>
+   * <b><a href="https://valkey.io/commands/type">Type Command</a></b>
    * Return the type of the value stored at key in form of a string. The type can be one of "none",
    * "string", "list", "set". "none" is returned if the key does not exist.
    * <p>
@@ -56,7 +56,7 @@ public interface KeyCommands {
   String type(String key);
 
   /**
-   * <b><a href="http://redis.io/commands/dump">Dump Command</a></b>
+   * <b><a href="https://valkey.io/commands/dump">Dump Command</a></b>
    * Serialize the value stored at key in a Redis-specific format and return it to the user.
    * <p>
    * Time complexity: O(1) to access the key and additional O(N*M) to serialize it where N is
@@ -67,7 +67,7 @@ public interface KeyCommands {
   byte[] dump(String key);
 
   /**
-   * <b><a href="http://redis.io/commands/restore">Restore Command</a></b>
+   * <b><a href="https://valkey.io/commands/restore">Restore Command</a></b>
    * Create a key associated with a value that is obtained by deserializing the provided serialized
    * value (obtained via {@link KeyCommands#dump(String) DUMP}).
    * <p>
@@ -82,7 +82,7 @@ public interface KeyCommands {
   String restore(String key, long ttl, byte[] serializedValue);
 
   /**
-   * <b><a href="http://redis.io/commands/restore">Restore Command</a></b>
+   * <b><a href="https://valkey.io/commands/restore">Restore Command</a></b>
    * Create a key associated with a value that is obtained by deserializing the provided serialized
    * value (obtained via {@link KeyCommands#dump(String) DUMP}).
    * <p>
@@ -98,7 +98,7 @@ public interface KeyCommands {
   String restore(String key, long ttl, byte[] serializedValue, RestoreParams params);
 
   /**
-   * <b><a href="http://redis.io/commands/expire">Expire Command</a></b>
+   * <b><a href="https://valkey.io/commands/expire">Expire Command</a></b>
    * Set a timeout on the specified key. After the timeout the key will be automatically deleted by
    * the server. A key with an associated timeout is said to be volatile in Redis terminology.
    * <p>
@@ -133,7 +133,7 @@ public interface KeyCommands {
   long expire(String key, long seconds, ExpiryOption expiryOption);
 
   /**
-   * <b><a href="http://redis.io/commands/pexpire">PExpire Command</a></b>
+   * <b><a href="https://valkey.io/commands/pexpire">PExpire Command</a></b>
    * This command works exactly like {@link KeyCommands#expire(String, long) EXPIRE} but the time
    * to live of the key is specified in milliseconds instead of seconds.
    * <p>
@@ -158,7 +158,7 @@ public interface KeyCommands {
 
 
   /**
-   * <b><a href="http://redis.io/commands/expireTime">ExpireTime Command</a></b>
+   * <b><a href="https://valkey.io/commands/expiretime">ExpireTime Command</a></b>
    * Returns the absolute Unix timestamp (since January 1, 1970) in seconds at which the given key will expire.
    * <p>
    * The command returns -1 if the key exists but has no associated expiration time, and -2 if the key does not exist.
@@ -171,7 +171,7 @@ public interface KeyCommands {
   long expireTime(String key);
 
   /**
-   * <b><a href="http://redis.io/commands/pexpireTime">PExpireTime Command</a></b>
+   * <b><a href="https://valkey.io/commands/pexpiretime">PExpireTime Command</a></b>
    * Similar to {@link KeyCommands#expireTime(String) EXPIRETIME} but returns the absolute Unix expiration
    * timestamp in milliseconds instead of seconds.
    * <p>
@@ -184,7 +184,7 @@ public interface KeyCommands {
   long pexpireTime(String key);
 
   /**
-   * <b><a href="http://redis.io/commands/expireat">ExpireAt Command</a></b>
+   * <b><a href="https://valkey.io/commands/expireat">ExpireAt Command</a></b>
    * EXPIREAT works exactly like {@link KeyCommands#expire(String, long) EXPIRE} but instead to get the
    * number of seconds representing the Time To Live of the key as a second argument (that is a
    * relative way of specifying the TTL), it takes an absolute one in the form of a UNIX timestamp
@@ -204,7 +204,7 @@ public interface KeyCommands {
   long expireAt(String key, long unixTime);
 
   /**
-   * <b><a href="http://redis.io/commands/expireat">ExpireAt Command</a></b>
+   * <b><a href="https://valkey.io/commands/expireat">ExpireAt Command</a></b>
    * Similar to {@link KeyCommands#expireAt(String, long) EXPIREAT} but with {@code ExpiryOption}.
    * @see KeyCommands#expireAt(String, long)
    * @param key
@@ -216,7 +216,7 @@ public interface KeyCommands {
   long expireAt(String key, long unixTime, ExpiryOption expiryOption);
 
   /**
-   * <b><a href="http://redis.io/commands/pexpireat">PExpireAt Command</a></b>
+   * <b><a href="https://valkey.io/commands/pexpireat">PExpireAt Command</a></b>
    * This command works exactly like {@link KeyCommands#expireAt(String, long) EXPIREAT} but
    * Unix time at which the key will expire is specified in milliseconds instead of seconds.
    * <p>
@@ -229,7 +229,7 @@ public interface KeyCommands {
   long pexpireAt(String key, long millisecondsTimestamp);
 
   /**
-   * <b><a href="http://redis.io/commands/expireat">ExpireAt Command</a></b>
+   * <b><a href="https://valkey.io/commands/expireat">ExpireAt Command</a></b>
    * Similar to {@link KeyCommands#pexpireAt(String, long) PEXPIREAT} but with {@code ExpiryOption}.
    * @see KeyCommands#pexpireAt(String, long)
    * @param key
@@ -241,7 +241,7 @@ public interface KeyCommands {
   long pexpireAt(String key, long millisecondsTimestamp, ExpiryOption expiryOption);
 
   /**
-   * <b><a href="http://redis.io/commands/ttl">TTL Command</a></b>
+   * <b><a href="https://valkey.io/commands/ttl">TTL Command</a></b>
    * The TTL command returns the remaining time to live in seconds of a key that has an
    * {@link KeyCommands#expire(String, long) EXPIRE} set. This introspection capability allows a Redis
    * connection to check how many seconds a given key will continue to be part of the dataset.
@@ -253,7 +253,7 @@ public interface KeyCommands {
   long ttl(String key);
 
   /**
-   * <b><a href="http://redis.io/commands/pttl">PTTL Command</a></b>
+   * <b><a href="https://valkey.io/commands/pttl">PTTL Command</a></b>
    * The PTTL command returns the remaining time to live in milliseconds of a key that has an
    * {@link KeyCommands#expire(String, long) EXPIRE} set.
    * <p>
@@ -264,7 +264,7 @@ public interface KeyCommands {
   long pttl(String key);
 
   /**
-   * <b><a href="http://redis.io/commands/touch">Touch Command</a></b>
+   * <b><a href="https://valkey.io/commands/touch">Touch Command</a></b>
    * Alters the last access time of a key. A key is ignored if it does not exist.
    * <p>
    * Time complexity: O(N) where N is the number of keys that will be touched.
@@ -274,7 +274,7 @@ public interface KeyCommands {
   long touch(String key);
 
   /**
-   * <b><a href="http://redis.io/commands/touch">Touch Command</a></b>
+   * <b><a href="https://valkey.io/commands/touch">Touch Command</a></b>
    * Alters the last access time of a key(s). A key is ignored if it does not exist.
    * <p>
    * Time complexity: O(N) where N is the number of keys that will be touched.
@@ -284,7 +284,7 @@ public interface KeyCommands {
   long touch(String... keys);
 
   /**
-   * <b><a href="http://redis.io/commands/sort">Sort Command</a></b>
+   * <b><a href="https://valkey.io/commands/sort">Sort Command</a></b>
    * Sort a Set or a List.
    * <p>
    * Sort the elements contained in the List, Set, or Sorted Set values at key. By default, sorting is
@@ -400,7 +400,7 @@ public interface KeyCommands {
   List<String> sortReadonly(String key, SortingParams sortingParams);
 
   /**
-   * <b><a href="http://redis.io/commands/del">Del Command</a></b>
+   * <b><a href="https://valkey.io/commands/del">Del Command</a></b>
    * Remove the specified key. If a given key does not exist, no operation is performed.
    * <p>
    * Time complexity: O(1)
@@ -419,7 +419,7 @@ public interface KeyCommands {
   long del(String... keys);
 
   /**
-   * <b><a href="http://redis.io/commands/unlink">Unlink Command</a></b>
+   * <b><a href="https://valkey.io/commands/unlink">Unlink Command</a></b>
    * This command is very similar to {@link KeyCommands#del(String) DEL}: it removes the specified key.
    * Just like DEL a key is ignored if it does not exist. However, the command performs the actual
    * memory reclaiming in a different thread, so it is not blocking, while DEL is. This is where the
@@ -443,7 +443,7 @@ public interface KeyCommands {
   long unlink(String... keys);
 
   /**
-   * <b><a href="http://redis.io/commands/copy">Copy Command</a></b>
+   * <b><a href="https://valkey.io/commands/copy">Copy Command</a></b>
    * Copy the value stored at the source key to the destination key.
    * @param srcKey the source key.
    * @param dstKey the destination key.
@@ -453,7 +453,7 @@ public interface KeyCommands {
   boolean copy(String srcKey, String dstKey, boolean replace);
 
   /**
-   * <b><a href="http://redis.io/commands/rename">Rename Command</a></b>
+   * <b><a href="https://valkey.io/commands/rename">Rename Command</a></b>
    * Atomically renames the key {@code oldkey} to {@code newkey}. If the source and destination name are the same an
    * error is returned. If {@code newkey} already exists it is overwritten.
    * <p>
@@ -465,7 +465,7 @@ public interface KeyCommands {
   String rename(String oldkey, String newkey);
 
   /**
-   * <b><a href="http://redis.io/commands/renamenx">RenameNX Command</a></b>
+   * <b><a href="https://valkey.io/commands/renamenx">RenameNX Command</a></b>
    * Rename oldkey into newkey but fails if the destination key newkey already exists.
    * <p>
    * Time complexity: O(1)
@@ -476,7 +476,7 @@ public interface KeyCommands {
   long renamenx(String oldkey, String newkey);
 
   /**
-   * <b><a href="http://redis.io/commands/memory-usage">Memory Usage Command</a></b>
+   * <b><a href="https://valkey.io/commands/memory-usage">Memory Usage Command</a></b>
    * Report the number of bytes that a key and its value require to be stored in RAM.
    * <p>
    * Time complexity: O(1)
@@ -486,7 +486,7 @@ public interface KeyCommands {
   Long memoryUsage(String key);
 
   /**
-   * <b><a href="http://redis.io/commands/memory-usage">Memory Usage Command</a></b>
+   * <b><a href="https://valkey.io/commands/memory-usage">Memory Usage Command</a></b>
    * Report the number of bytes that a key and its value require to be stored in RAM.
    * <p>
    * Time complexity: O(1)
@@ -498,7 +498,7 @@ public interface KeyCommands {
   Long memoryUsage(String key, int samples);
 
   /**
-   * <b><a href="http://redis.io/commands/object-refcount">Object Refcount Command</a></b>
+   * <b><a href="https://valkey.io/commands/object-refcount">Object Refcount Command</a></b>
    * Return the reference count of the stored at key.
    * <p>
    * Time complexity: O(1)
@@ -508,7 +508,7 @@ public interface KeyCommands {
   Long objectRefcount(String key);
 
   /**
-   * <b><a href="http://redis.io/commands/object-encoding">Object Encoding Command</a></b>
+   * <b><a href="https://valkey.io/commands/object-encoding">Object Encoding Command</a></b>
    * Return the internal encoding for the Redis object stored at key.
    * <p>
    * Time complexity: O(1)
@@ -518,7 +518,7 @@ public interface KeyCommands {
   String objectEncoding(String key);
 
   /**
-   * <b><a href="http://redis.io/commands/object-idletime">Object IdleTime Command</a></b>
+   * <b><a href="https://valkey.io/commands/object-idletime">Object IdleTime Command</a></b>
    * Return the time in seconds since the last access to the value stored at key.
    * <p>
    * Time complexity: O(1)
@@ -528,7 +528,7 @@ public interface KeyCommands {
   Long objectIdletime(String key);
 
   /**
-   * <b><a href="http://redis.io/commands/object-freq">Object Freq Command</a></b>
+   * <b><a href="https://valkey.io/commands/object-freq">Object Freq Command</a></b>
    * Return the logarithmic access frequency counter of a Redis object stored at key.
    * <p>
    * Time complexity: O(1)
@@ -538,7 +538,7 @@ public interface KeyCommands {
   Long objectFreq(String key);
 
   /**
-   * <b><a href="http://redis.io/commands/migrate">Migrate Command</a></b>
+   * <b><a href="https://valkey.io/commands/migrate">Migrate Command</a></b>
    * Atomically transfer a key from a source Redis instance to a destination Redis instance.
    * On success the key is deleted from the original instance and is guaranteed to exist in
    * the target instance.
@@ -552,7 +552,7 @@ public interface KeyCommands {
   String migrate(String host, int port, String key, int timeout);
 
   /**
-   * <b><a href="http://redis.io/commands/migrate">Migrate Command</a></b>
+   * <b><a href="https://valkey.io/commands/migrate">Migrate Command</a></b>
    * Atomically transfer a key from a source Redis instance to a destination Redis instance.
    * On success the key is deleted from the original instance and is guaranteed to exist in
    * the target instance.
@@ -567,7 +567,7 @@ public interface KeyCommands {
   String migrate(String host, int port, int timeout, MigrateParams params, String... keys);
 
   /**
-   * <b><a href="http://redis.io/commands/keys">Keys Command</a></b>
+   * <b><a href="https://valkey.io/commands/keys">Keys Command</a></b>
    * Returns all the keys matching the glob-style pattern as space separated strings. For example if
    * you have in the database the keys "foo" and "foobar" the command "KEYS foo*" will return
    * "foo foobar".
@@ -604,7 +604,7 @@ public interface KeyCommands {
   ScanResult<String> scan(String cursor, ScanParams params, String type);
 
   /**
-   * <b><a href="http://redis.io/commands/randomkey">RandomKey Command</a></b>
+   * <b><a href="https://valkey.io/commands/randomkey">RandomKey Command</a></b>
    * Return a randomly selected key from the currently selected DB.
    * <p>
    * Time complexity: O(1)

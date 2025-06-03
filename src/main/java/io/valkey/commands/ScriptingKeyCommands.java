@@ -5,7 +5,7 @@ import java.util.List;
 public interface ScriptingKeyCommands {
 
   /**
-   * <b><a href="http://redis.io/commands/eval">Eval Command</a></b>
+   * <b><a href="https://valkey.io/commands/eval">Eval Command</a></b>
    * Use to evaluate scripts using the Lua interpreter built into Redis starting from version 2.6.0.
    * @param script Lua 5.1 script. The script does not need to define a Lua function (and should not).
    *              It is just a Lua program that will run in the context of the Redis server.
@@ -14,7 +14,7 @@ public interface ScriptingKeyCommands {
   Object eval(String script);
 
   /**
-   * <b><a href="http://redis.io/commands/eval">Eval Command</a></b>
+   * <b><a href="https://valkey.io/commands/eval">Eval Command</a></b>
    * Use to evaluate scripts using the Lua interpreter built into Redis starting from version 2.6.0.
    * @param script Lua 5.1 script. The script does not need to define a Lua function (and should not).
    *              It is just a Lua program that will run in the context of the Redis server.
@@ -25,7 +25,7 @@ public interface ScriptingKeyCommands {
   Object eval(String script, int keyCount, String... params);
 
   /**
-   * <b><a href="http://redis.io/commands/eval">Eval Command</a></b>
+   * <b><a href="https://valkey.io/commands/eval">Eval Command</a></b>
    * Use to evaluate scripts using the Lua interpreter built into Redis starting from version 2.6.0.
    * @param script Lua 5.1 script. The script does not need to define a Lua function (and should not).
    *              It is just a Lua program that will run in the context of the Redis server.
@@ -47,7 +47,7 @@ public interface ScriptingKeyCommands {
   Object evalReadonly(String script, List<String> keys, List<String> args);
 
   /**
-   * <b><a href="http://redis.io/commands/evalsha">EvalSha Command</a></b>
+   * <b><a href="https://valkey.io/commands/evalsha">EvalSha Command</a></b>
    * Similar to {@link ScriptingKeyCommands#eval(String) EVAL}, but the script cached on the server
    * side by its SHA1 digest. Scripts are cached on the server side using the SCRIPT LOAD command.
    * @see ScriptingKeyCommands#eval(String)
@@ -57,7 +57,7 @@ public interface ScriptingKeyCommands {
   Object evalsha(String sha1);
 
   /**
-   * <b><a href="http://redis.io/commands/evalsha">EvalSha Command</a></b>
+   * <b><a href="https://valkey.io/commands/evalsha">EvalSha Command</a></b>
    * Similar to {@link ScriptingKeyCommands#eval(String, int, String...)}  EVAL}, but the script cached on the server
    * side by its SHA1 digest. Scripts are cached on the server side using the SCRIPT LOAD command.
    * @see ScriptingKeyCommands#eval(String, int, String...)
@@ -67,7 +67,7 @@ public interface ScriptingKeyCommands {
   Object evalsha(String sha1, int keyCount, String... params);
 
   /**
-   * <b><a href="http://redis.io/commands/evalsha">EvalSha Command</a></b>
+   * <b><a href="https://valkey.io/commands/evalsha">EvalSha Command</a></b>
    * Similar to {@link ScriptingKeyCommands#eval(String, List, List)}  EVAL}, but the script cached on the server
    * side by its SHA1 digest. Scripts are cached on the server side using the SCRIPT LOAD command.
    * @see ScriptingKeyCommands#eval(String, List, List)

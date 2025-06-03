@@ -76,7 +76,7 @@ public interface DatabaseCommands {
   boolean copy(byte[] srcKey, byte[] dstKey, int db, boolean replace);
 
   /**
-   * <b><a href="http://redis.io/commands/migrate">Migrate Command</a></b>
+   * <b><a href="https://valkey.io/commands/migrate">Migrate Command</a></b>
    * Atomically transfer a key from a source Redis instance to a destination Redis instance.
    * On success the key is deleted from the original instance and is guaranteed to exist in
    * the target instance.
@@ -98,7 +98,7 @@ public interface DatabaseCommands {
   String migrate(String host, int port, byte[] key, int destinationDB, int timeout);
 
   /**
-   * <b><a href="http://redis.io/commands/migrate">Migrate Command</a></b>
+   * <b><a href="https://valkey.io/commands/migrate">Migrate Command</a></b>
    * Atomically transfer a key from a source Redis instance to a destination Redis instance.
    * On success the key is deleted from the original instance and is guaranteed to exist in
    * the target instance.

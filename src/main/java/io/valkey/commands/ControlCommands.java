@@ -29,7 +29,7 @@ public interface ControlCommands extends AccessControlLogCommands, ClientCommand
   /**
    * Returns the internal encoding for the Redis object stored at {@code key}.
    * <p>
-   * See for details: <a href="https://redis.io/commands/object-encoding">OBJECT ENCODING key</a>
+   * See for details: <a href="https://valkey.io/commands/object-encoding">OBJECT ENCODING key</a>
    *
    * @param key The key in Redis server
    * @return The number of references
@@ -75,7 +75,7 @@ public interface ControlCommands extends AccessControlLogCommands, ClientCommand
    * The reported usage is the total of memory allocations for data and administrative
    * overheads that a key its value require.
    * <p>
-   * See for details: <a href="https://redis.io/commands/memory-usage">MEMORY USAGE key</a>
+   * See for details: <a href="https://valkey.io/commands/memory-usage">MEMORY USAGE key</a>
    *
    * @param key The key in Redis server
    * @return The memory usage in bytes, or {@code nil(Java's null)} when the key does not exist
@@ -87,7 +87,7 @@ public interface ControlCommands extends AccessControlLogCommands, ClientCommand
    * The reported usage is the total of memory allocations for data and administrative
    * overheads that a key its value require.
    * <p>
-   * See for details: <a href="https://redis.io/commands/memory-usage">MEMORY USAGE key SAMPLES count</a>
+   * See for details: <a href="https://valkey.io/commands/memory-usage">MEMORY USAGE key SAMPLES count</a>
    *
    * @param key The key in Redis server
    * @return The memory usage in bytes, or {@code nil(Java's null)} when the key does not exist

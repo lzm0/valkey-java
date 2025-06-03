@@ -67,7 +67,7 @@ public interface ServerCommands {
 
   /**
    * Request for authentication with username and password, based on the ACL feature introduced in
-   * Redis 6.0 see https://redis.io/topics/acl
+   * Redis 6.0 see https://valkey.io/topics/acl
    * @return OK
    */
   String auth(String user, String password);
@@ -222,7 +222,7 @@ public interface ServerCommands {
   /**
    * Blocks the current client until all the previous write commands are acknowledged as having been
    * fsynced to the AOF of the local Redis and/or at least the specified number of replicas.
-   * <a href="https://redis.io/commands/waitaof/">Redis Documentation</a>
+   * <a href="https://valkey.io/commands/waitaof">Redis Documentation</a>
    * @param numLocal Number of local instances that are required to acknowledge the sync (0 or 1),
    *                 cannot be non-zero if the local Redis does not have AOF enabled
    * @param numReplicas Number of replicas that are required to acknowledge the sync

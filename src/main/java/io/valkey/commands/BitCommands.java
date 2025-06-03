@@ -9,7 +9,7 @@ import io.valkey.params.BitPosParams;
 public interface BitCommands {
 
   /**
-   * <b><a href="http://redis.io/commands/setbit">SetBit Command</a></b>
+   * <b><a href="https://valkey.io/commands/setbit">SetBit Command</a></b>
    * Sets or clears the bit at offset in the string value stored at key.
    * <p>
    * Time complexity: O(1)
@@ -21,7 +21,7 @@ public interface BitCommands {
   boolean setbit(String key, long offset, boolean value);
 
   /**
-   * <b><a href="http://redis.io/commands/getbit">GetBit Command</a></b>
+   * <b><a href="https://valkey.io/commands/getbit">GetBit Command</a></b>
    * Returns the bit value at offset in the string value stored at key.
    * <p>
    * Time complexity: O(1)
@@ -32,7 +32,7 @@ public interface BitCommands {
   boolean getbit(String key, long offset);
 
   /**
-   * <b><a href="http://redis.io/commands/bitcount">Bitcount Command</a></b>
+   * <b><a href="https://valkey.io/commands/bitcount">Bitcount Command</a></b>
    * Count the number of set bits (population counting) in a string.
    * @param key
    * @return The number of bits set to 1
@@ -40,7 +40,7 @@ public interface BitCommands {
   long bitcount(String key);
 
   /**
-   * <b><a href="http://redis.io/commands/bitcount">Bitcount Command</a></b>
+   * <b><a href="https://valkey.io/commands/bitcount">Bitcount Command</a></b>
    * Count the number of set bits (population counting) in a string only in an interval start and end.
    * <p>
    * Like for the GETRANGE command start and end can contain negative values in order to index bytes
@@ -63,7 +63,7 @@ public interface BitCommands {
   long bitcount(String key, long start, long end, BitCountOption option);
 
   /**
-   * <b><a href="http://redis.io/commands/bitpos">Bitpos Command</a></b>
+   * <b><a href="https://valkey.io/commands/bitpos">Bitpos Command</a></b>
    * Return the position of the first bit set to 1 or 0 in a string.
    * @param key
    * @param value the bit value
@@ -72,7 +72,7 @@ public interface BitCommands {
   long bitpos(String key, boolean value);
 
   /**
-   * <b><a href="http://redis.io/commands/bitpos">Bitpos Command</a></b>
+   * <b><a href="https://valkey.io/commands/bitpos">Bitpos Command</a></b>
    * Return the position of the first bit set to 1 or 0 in a string.
    * @param key
    * @param value the bit value
@@ -82,7 +82,7 @@ public interface BitCommands {
   long bitpos(String key, boolean value, BitPosParams params);
 
   /**
-   * <b><a href="http://redis.io/commands/bitfield">Bitfield Command</a></b>
+   * <b><a href="https://valkey.io/commands/bitfield">Bitfield Command</a></b>
    * The command treats a Redis string as an array of bits, and is capable of addressing specific integer
    * fields of varying bit widths and arbitrary non (necessary) aligned offset.
    * @param key
@@ -97,7 +97,7 @@ public interface BitCommands {
   List<Long> bitfieldReadonly(String key, String...arguments);
 
   /**
-   * <b><a href="http://redis.io/commands/bitop">Bitop Command</a></b>
+   * <b><a href="https://valkey.io/commands/bitop">Bitop Command</a></b>
    * Perform a bitwise operation between multiple keys (containing string values) and store the result in the destKey.
    * @param op can be AND, OR, XOR or NOT
    * @param destKey

@@ -784,7 +784,7 @@ public class Jedis implements ServerCommands, DatabaseCommands, JedisCommands, J
    * {@link Jedis#persist(byte[]) PERSIST} command.
    * <p>
    * Time complexity: O(1)
-   * @see <a href="http://redis.io/commands/expire">Expire Command</a>
+   * @see <a href="https://valkey.io/commands/expire">Expire Command</a>
    * @param key
    * @param seconds
    * @return 1: the timeout was set. 0: the timeout was not set.
@@ -815,7 +815,7 @@ public class Jedis implements ServerCommands, DatabaseCommands, JedisCommands, J
    * {@link Jedis#persist(byte[]) PERSIST} command.
    * <p>
    * Time complexity: O(1)
-   * @see <a href="http://redis.io/commands/pexpire">PEXPIRE Command</a>
+   * @see <a href="https://valkey.io/commands/pexpire">PEXPIRE Command</a>
    * @param key
    * @param milliseconds
    * @return 1: the timeout was set. 0: the timeout was not set.
@@ -860,7 +860,7 @@ public class Jedis implements ServerCommands, DatabaseCommands, JedisCommands, J
    * {@link Jedis#persist(byte[]) PERSIST} command.
    * <p>
    * Time complexity: O(1)
-   * @see <a href="http://redis.io/commands/expire">Expire Command</a>
+   * @see <a href="https://valkey.io/commands/expire">Expire Command</a>
    * @param key
    * @param unixTime
    * @return 1: the timeout was set. 0: the timeout was not set since
@@ -2743,7 +2743,7 @@ public class Jedis implements ServerCommands, DatabaseCommands, JedisCommands, J
   /**
    * Request for authentication with a Redis Server that is using ACL where user are authenticated with
    * username and password.
-   * See https://redis.io/topics/acl
+   * See https://valkey.io/topics/acl
    * @param user
    * @param password
    * @return OK
@@ -3436,7 +3436,7 @@ public class Jedis implements ServerCommands, DatabaseCommands, JedisCommands, J
   /**
    * Rewrite the append only file in background when it gets too big. Please for detailed
    * information about the Redis Append Only File check the <a
-   * href="http://redis.io/topics/persistence#append-only-file">Append Only File Howto</a>.
+   * href="https://valkey.io/topics/persistence#append-only-file">Append Only File Howto</a>.
    * <p>
    * BGREWRITEAOF rewrites the Append Only File in background when it gets too big. The Redis Append
    * Only File is a Journal, so every operation modifying the dataset is logged in the Append Only
@@ -5195,7 +5195,7 @@ public class Jedis implements ServerCommands, DatabaseCommands, JedisCommands, J
    * {@link Jedis#persist(String) PERSIST} command.
    * <p>
    * Time complexity: O(1)
-   * @see <a href="http://redis.io/commands/expire">Expire Command</a>
+   * @see <a href="https://valkey.io/commands/expire">Expire Command</a>
    * @param key
    * @param seconds
    * @return 1: the timeout was set. 0: the timeout was not set since
@@ -5284,7 +5284,7 @@ public class Jedis implements ServerCommands, DatabaseCommands, JedisCommands, J
    * {@link Jedis#persist(String) PERSIST} command.
    * <p>
    * Time complexity: O(1)
-   * @see <a href="http://redis.io/commands/expire">Expire Command</a>
+   * @see <a href="https://valkey.io/commands/expire">Expire Command</a>
    * @param key
    * @param unixTime
    * @return 1: the timeout was set. 0: the timeout was not set since
@@ -5329,7 +5329,7 @@ public class Jedis implements ServerCommands, DatabaseCommands, JedisCommands, J
   }
 
   /**
-   * <b><a href="http://redis.io/commands/expireat">ExpireAt Command</a></b>
+   * <b><a href="https://valkey.io/commands/expireat">ExpireAt Command</a></b>
    * Similar to {@link Jedis#pexpireAt(String, long) PEXPIREAT} but with {@code ExpiryOption}.
    * @see Jedis#pexpireAt(String, long)
    * @param key

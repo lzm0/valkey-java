@@ -94,7 +94,7 @@ public interface ClusterCommands {
    * by providing a more efficient and extensible representation of the cluster.
    *
    * @return a list of shards, with each shard containing two objects, 'slots' and 'nodes'.
-   * @see <a href="https://redis.io/commands/cluster-shards/">CLUSTER SHARDS</a>
+   * @see <a href="https://valkey.io/commands/cluster-shards">CLUSTER SHARDS</a>
    */
   List<ClusterShardInfo> clusterShards();
 
@@ -117,7 +117,7 @@ public interface ClusterCommands {
    * attributes and their values for an individual link.
    *
    * @return the information of all such peer links as an array
-   * @see <a href="https://redis.io/commands/cluster-links" >CLUSTET LINKS</a>
+   * @see <a href="https://valkey.io/commands/cluster-links">CLUSTET LINKS</a>
    */
   List<Map<String, Object>> clusterLinks();
 
