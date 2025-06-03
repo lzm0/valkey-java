@@ -556,7 +556,7 @@ public class Jedis implements ServerCommands, DatabaseCommands, JedisCommands, J
   }
 
   /**
-   * Get the value of the specified key. If the key does not exist the special value 'nil' is
+   * Get the value of the specified key. If the key does not exist the special value 'nil(Java's null)' is
    * returned. If the value stored at key is not a string an error is returned because GET can only
    * handle string values.
    * <p>
@@ -959,7 +959,7 @@ public class Jedis implements ServerCommands, DatabaseCommands, JedisCommands, J
 
   /**
    * Get the values of all the specified keys. If one or more keys don't exist or is not of type
-   * String, a 'nil' value is returned instead of the value of the specified key, but the operation
+   * String, a 'nil(Java's null)' value is returned instead of the value of the specified key, but the operation
    * never fails.
    * <p>
    * Time complexity: O(1) for every key
@@ -1235,7 +1235,7 @@ public class Jedis implements ServerCommands, DatabaseCommands, JedisCommands, J
   /**
    * If key holds a hash, retrieve the value associated to the specified field.
    * <p>
-   * If the field is not found or the key does not exist, a special 'nil' value is returned.
+   * If the field is not found or the key does not exist, a special 'nil(Java's null)' value is returned.
    * <p>
    * <b>Time complexity:</b> O(1)
    * @param key
@@ -1282,7 +1282,7 @@ public class Jedis implements ServerCommands, DatabaseCommands, JedisCommands, J
   /**
    * Retrieve the values associated to the specified fields.
    * <p>
-   * If some of the specified fields do not exist, nil values are returned. Non existing keys are
+   * If some of the specified fields do not exist, nil(Java's null) values are returned. Non existing keys are
    * considered like empty hashes.
    * <p>
    * <b>Time complexity:</b> O(N) (with N being the number of fields)
@@ -1584,7 +1584,7 @@ public class Jedis implements ServerCommands, DatabaseCommands, JedisCommands, J
    * the penultimate and so on.
    * <p>
    * If the value stored at key is not of list type an error is returned. If the index is out of
-   * range a 'nil' reply is returned.
+   * range a 'nil(Java's null)' reply is returned.
    * <p>
    * Note that even if the average time complexity is O(n) asking for the first or the last element
    * of the list is O(1).
@@ -1651,7 +1651,7 @@ public class Jedis implements ServerCommands, DatabaseCommands, JedisCommands, J
    * if the list contains the elements "a","b","c" LPOP will return "a" and the list will become
    * "b","c".
    * <p>
-   * If the key does not exist or the list is already empty the special value 'nil' is returned.
+   * If the key does not exist or the list is already empty the special value 'nil(Java's null)' is returned.
    * @see Jedis#rpop(byte[])
    * @param key
    * @return Bulk reply
@@ -1671,14 +1671,14 @@ public class Jedis implements ServerCommands, DatabaseCommands, JedisCommands, J
   /**
    * Returns the index of the first matching element inside a redis list. If the element is found,
    * its index (the zero-based position in the list) is returned. Otherwise, if no match is found,
-   * 'nil' is returned.
+   * 'nil(Java's null)' is returned.
    * <p>
    * Time complexity: O(N) where N is the number of elements in the list
    * @see Jedis#lpos(byte[], byte[])
    * @param key
    * @param element
    * @return The index of first matching element in the list. Value will
-   * be 'nil' when the element is not present in the list.
+   * be 'nil(Java's null)' when the element is not present in the list.
    */
   @Override
   public Long lpos(final byte[] key, final byte[] element) {
@@ -1701,7 +1701,7 @@ public class Jedis implements ServerCommands, DatabaseCommands, JedisCommands, J
    * @param key
    * @param element
    * @param params
-   * @return The index of first matching element in the list. Value will be 'nil' when the element
+   * @return The index of first matching element in the list. Value will be 'nil(Java's null)' when the element
    * is not present in the list
    */
   @Override
@@ -1736,7 +1736,7 @@ public class Jedis implements ServerCommands, DatabaseCommands, JedisCommands, J
    * if the list contains the elements "a","b","c" LPOP will return "a" and the list will become
    * "b","c".
    * <p>
-   * If the key does not exist or the list is already empty the special value 'nil' is returned.
+   * If the key does not exist or the list is already empty the special value 'nil(Java's null)' is returned.
    * @see Jedis#lpop(byte[])
    * @param key
    * @return Bulk reply
@@ -1759,7 +1759,7 @@ public class Jedis implements ServerCommands, DatabaseCommands, JedisCommands, J
    * elements "a","b","c" and the destination list contains the elements "foo","bar" after an
    * RPOPLPUSH command the content of the two lists will be "a","b" and "c","foo","bar".
    * <p>
-   * If the key does not exist or the list is already empty the special value 'nil' is returned. If
+   * If the key does not exist or the list is already empty the special value 'nil(Java's null)' is returned. If
    * the srckey and dstkey are the same the operation is equivalent to removing the last element
    * from the list and pushing it as first element of the list, so it's a "list rotation" command.
    * <p>
@@ -1822,14 +1822,14 @@ public class Jedis implements ServerCommands, DatabaseCommands, JedisCommands, J
 
   /**
    * Remove a random element from a Set returning it as return value. If the Set is empty or the key
-   * does not exist, a nil object is returned.
+   * does not exist, a nil(Java's null) object is returned.
    * <p>
    * The {@link Jedis#srandmember(byte[])} command does a similar work but the returned element is
    * not removed from the Set.
    * <p>
    * Time complexity O(1)
    * @param key
-   * @return The removed member, or nil when key does not exist
+   * @return The removed member, or nil(Java's null) when key does not exist
    */
   @Override
   public byte[] spop(final byte[] key) {
@@ -2050,7 +2050,7 @@ public class Jedis implements ServerCommands, DatabaseCommands, JedisCommands, J
 
   /**
    * Return a random element from a Set, without removing the element. If the Set is empty or the
-   * key does not exist, a nil object is returned.
+   * key does not exist, a nil(Java's null) object is returned.
    * <p>
    * The SPOP command does a similar work but the returned element is popped (removed) from the Set.
    * <p>
@@ -2174,7 +2174,7 @@ public class Jedis implements ServerCommands, DatabaseCommands, JedisCommands, J
    * Return the rank (or index) or member in the sorted set at key, with scores being ordered from
    * low to high.
    * <p>
-   * When the given member does not exist in the sorted set, the special value 'nil' is returned.
+   * When the given member does not exist in the sorted set, the special value 'nil(Java's null)' is returned.
    * The returned rank (or index) of the member is 0-based for both commands.
    * <p>
    * <b>Time complexity:</b>
@@ -2183,7 +2183,7 @@ public class Jedis implements ServerCommands, DatabaseCommands, JedisCommands, J
    * @see Jedis#zrevrank(byte[], byte[])
    * @param key
    * @param member
-   * @return The element as an integer if the element exists. A 'nil' bulk reply if there is no such element
+   * @return The element as an integer if the element exists. A 'nil(Java's null)' bulk reply if there is no such element
    */
   @Override
   public Long zrank(final byte[] key, final byte[] member) {
@@ -2195,7 +2195,7 @@ public class Jedis implements ServerCommands, DatabaseCommands, JedisCommands, J
    * Return the rank (or index) or member in the sorted set at key, with scores being ordered from
    * high to low.
    * <p>
-   * When the given member does not exist in the sorted set, the special value 'nil' is returned.
+   * When the given member does not exist in the sorted set, the special value 'nil(Java's null)' is returned.
    * The returned rank (or index) of the member is 0-based for both commands.
    * <p>
    * <b>Time complexity:</b>
@@ -2204,7 +2204,7 @@ public class Jedis implements ServerCommands, DatabaseCommands, JedisCommands, J
    * @see Jedis#zrank(byte[], byte[])
    * @param key
    * @param member
-   * @return The element as an integer if the element exists. A 'nil' bulk reply if there is no such element.
+   * @return The element as an integer if the element exists. A 'nil(Java's null)' bulk reply if there is no such element.
    */
   @Override
   public Long zrevrank(final byte[] key, final byte[] member) {
@@ -2308,7 +2308,7 @@ public class Jedis implements ServerCommands, DatabaseCommands, JedisCommands, J
 
   /**
    * Return the score of the specified element of the sorted set at key. If the specified element
-   * does not exist in the sorted set, or the key does not exist at all, a special 'nil' value is
+   * does not exist in the sorted set, or the key does not exist at all, a special 'nil(Java's null)' value is
    * returned.
    * <p>
    * <b>Time complexity:</b> O(1)
@@ -2324,7 +2324,7 @@ public class Jedis implements ServerCommands, DatabaseCommands, JedisCommands, J
 
   /**
    * Returns the scores associated with the specified members in the sorted set stored at key.
-   * For every member that does not exist in the sorted set, a nil value is returned.
+   * For every member that does not exist in the sorted set, a nil(Java's null) value is returned.
    * <p>
    * <b>Time complexity:</b> O(N) where N is the number of members being requested.
    * @param key
@@ -2574,7 +2574,7 @@ public class Jedis implements ServerCommands, DatabaseCommands, JedisCommands, J
    * Once new data is present on one of the lists, the connection finally returns with the name of the
    * key unblocking it and the popped value.
    * <p>
-   * When blocking, if a non-zero timeout is specified, the connection will unblock returning a nil
+   * When blocking, if a non-zero timeout is specified, the connection will unblock returning a nil(Java's null)
    * special value if the specified amount of seconds passed without a push operation against at
    * least one of the specified keys.
    * <p>
@@ -2592,7 +2592,7 @@ public class Jedis implements ServerCommands, DatabaseCommands, JedisCommands, J
    * in batch), but it does not make sense to use BLPOP or BRPOP inside a MULTI/EXEC block (a Redis
    * transaction).
    * <p>
-   * The behavior of BLPOP inside MULTI/EXEC when the list is empty is to return a multi-bulk nil
+   * The behavior of BLPOP inside MULTI/EXEC when the list is empty is to return a multi-bulk nil(Java's null)
    * reply, exactly what happens when the timeout is reached. If you like science fiction, think at
    * it like if inside MULTI/EXEC the time will flow at infinite speed :)
    * <p>
@@ -2603,7 +2603,7 @@ public class Jedis implements ServerCommands, DatabaseCommands, JedisCommands, J
    *         unblocking key and the popped value.
    *         <p>
          When a non-zero timeout is specified, and the BLPOP operation timed out, the return
-         value is a nil multi bulk reply. Most connection values will return false or nil
+         value is a nil(Java's null) multi bulk reply. Most connection values will return false or nil(Java's null)
          accordingly to the programming language used.
    */
   @Override
@@ -2645,7 +2645,7 @@ public class Jedis implements ServerCommands, DatabaseCommands, JedisCommands, J
    * Once new data is present on one of the lists, the connection finally returns with the name of the
    * key unblocking it and the popped value.
    * <p>
-   * When blocking, if a non-zero timeout is specified, the connection will unblock returning a nil
+   * When blocking, if a non-zero timeout is specified, the connection will unblock returning a nil(Java's null)
    * special value if the specified amount of seconds passed without a push operation against at
    * least one of the specified keys.
    * <p>
@@ -2663,7 +2663,7 @@ public class Jedis implements ServerCommands, DatabaseCommands, JedisCommands, J
    * in batch), but it does not make sense to use BLPOP or BRPOP inside a MULTI/EXEC block (a Redis
    * transaction).
    * <p>
-   * The behavior of BLPOP inside MULTI/EXEC when the list is empty is to return a multi-bulk nil
+   * The behavior of BLPOP inside MULTI/EXEC when the list is empty is to return a multi-bulk nil(Java's null)
    * reply, exactly what happens when the timeout is reached. If you like science fiction, think at
    * it like if inside MULTI/EXEC the time will flow at infinite speed :)
    * <p>
@@ -2674,7 +2674,7 @@ public class Jedis implements ServerCommands, DatabaseCommands, JedisCommands, J
    *         unblocking key and the popped value.
    *         <p>
          When a non-zero timeout is specified, and the BLPOP operation timed out, the return
-         value is a nil multi bulk reply. Most connection values will return false or nil
+         value is a nil(Java's null) multi bulk reply. Most connection values will return false or nil(Java's null)
          accordingly to the programming language used.
    */
   @Override
@@ -5000,7 +5000,7 @@ public class Jedis implements ServerCommands, DatabaseCommands, JedisCommands, J
   }
 
   /**
-   * Get the value of the specified key. If the key does not exist the special value 'nil' is
+   * Get the value of the specified key. If the key does not exist the special value 'nil(Java's null)' is
    * returned. If the value stored at key is not a string an error is returned because GET can only
    * handle string values.
    * <p>
@@ -5407,7 +5407,7 @@ public class Jedis implements ServerCommands, DatabaseCommands, JedisCommands, J
 
   /**
    * Get the values of all the specified keys. If one or more keys don't exist or is not of type
-   * String, a 'nil' value is returned instead of the value of the specified key, but the operation
+   * String, a 'nil(Java's null)' value is returned instead of the value of the specified key, but the operation
    * never fails.
    * <p>
    * Time complexity: O(1) for every key
@@ -5678,7 +5678,7 @@ public class Jedis implements ServerCommands, DatabaseCommands, JedisCommands, J
   /**
    * If key holds a hash, retrieve the value associated to the specified field.
    * <p>
-   * If the field is not found or the key does not exist, a special 'nil' value is returned.
+   * If the field is not found or the key does not exist, a special 'nil(Java's null)' value is returned.
    * <p>
    * <b>Time complexity:</b> O(1)
    * @param key
@@ -5725,7 +5725,7 @@ public class Jedis implements ServerCommands, DatabaseCommands, JedisCommands, J
   /**
    * Retrieve the values associated to the specified fields.
    * <p>
-   * If some of the specified fields do not exist, nil values are returned. Non existing keys are
+   * If some of the specified fields do not exist, nil(Java's null) values are returned. Non existing keys are
    * considered like empty hashes.
    * <p>
    * <b>Time complexity:</b> O(N) (with N being the number of fields)
@@ -6031,7 +6031,7 @@ public class Jedis implements ServerCommands, DatabaseCommands, JedisCommands, J
    * the penultimate and so on.
    * <p>
    * If the value stored at key is not of list type an error is returned. If the index is out of
-   * range a 'nil' reply is returned.
+   * range a 'nil(Java's null)' reply is returned.
    * <p>
    * Note that even if the average time complexity is O(n) asking for the first or the last element
    * of the list is O(1).
@@ -6098,7 +6098,7 @@ public class Jedis implements ServerCommands, DatabaseCommands, JedisCommands, J
    * if the list contains the elements "a","b","c" LPOP will return "a" and the list will become
    * "b","c".
    * <p>
-   * If the key does not exist or the list is already empty the special value 'nil' is returned.
+   * If the key does not exist or the list is already empty the special value 'nil(Java's null)' is returned.
    * @see Jedis#rpop(String)
    * @param key
    * @return Bulk reply
@@ -6139,7 +6139,7 @@ public class Jedis implements ServerCommands, DatabaseCommands, JedisCommands, J
    * if the list contains the elements "a","b","c" RPOP will return "c" and the list will become
    * "a","b".
    * <p>
-   * If the key does not exist or the list is already empty the special value 'nil' is returned.
+   * If the key does not exist or the list is already empty the special value 'nil(Java's null)' is returned.
    * @see Jedis#lpop(String)
    * @param key
    * @return Bulk reply
@@ -6162,7 +6162,7 @@ public class Jedis implements ServerCommands, DatabaseCommands, JedisCommands, J
    * elements "a","b","c" and the destination list contains the elements "foo","bar" after an
    * RPOPLPUSH command the content of the two lists will be "a","b" and "c","foo","bar".
    * <p>
-   * If the key does not exist or the list is already empty the special value 'nil' is returned. If
+   * If the key does not exist or the list is already empty the special value 'nil(Java's null)' is returned. If
    * the srckey and dstkey are the same the operation is equivalent to removing the last element
    * from the list and pushing it as first element of the list, so it's a "list rotation" command.
    * <p>
@@ -6224,7 +6224,7 @@ public class Jedis implements ServerCommands, DatabaseCommands, JedisCommands, J
 
   /**
    * Remove a random element from a Set returning it as return value. If the Set is empty or the key
-   * does not exist, a nil object is returned.
+   * does not exist, a nil(Java's null) object is returned.
    * <p>
    * The {@link Jedis#srandmember(String)} command does a similar work but the returned element is
    * not removed from the Set.
@@ -6453,7 +6453,7 @@ public class Jedis implements ServerCommands, DatabaseCommands, JedisCommands, J
 
   /**
    * Return a random element from a Set, without removing the element. If the Set is empty or the
-   * key does not exist, a nil object is returned.
+   * key does not exist, a nil(Java's null) object is returned.
    * <p>
    * The SPOP command does a similar work but the returned element is popped (removed) from the Set.
    * <p>
@@ -6614,7 +6614,7 @@ public class Jedis implements ServerCommands, DatabaseCommands, JedisCommands, J
    * Return the rank (or index) of member in the sorted set at key, with scores being ordered from
    * low to high.
    * <p>
-   * When the given member does not exist in the sorted set, the special value 'nil' is returned.
+   * When the given member does not exist in the sorted set, the special value 'nil(Java's null)' is returned.
    * The returned rank (or index) of the member is 0-based for both commands.
    * <p>
    * <b>Time complexity:</b>
@@ -6623,7 +6623,7 @@ public class Jedis implements ServerCommands, DatabaseCommands, JedisCommands, J
    * @see Jedis#zrevrank(String, String)
    * @param key
    * @param member
-   * @return The element as an integer if the element exists. A 'nil' bulk reply if there is no such element.
+   * @return The element as an integer if the element exists. A 'nil(Java's null)' bulk reply if there is no such element.
    */
   @Override
   public Long zrank(final String key, final String member) {
@@ -6635,7 +6635,7 @@ public class Jedis implements ServerCommands, DatabaseCommands, JedisCommands, J
    * Return the rank (or index) of member in the sorted set at key, with scores being ordered from
    * high to low.
    * <p>
-   * When the given member does not exist in the sorted set, the special value 'nil' is returned.
+   * When the given member does not exist in the sorted set, the special value 'nil(Java's null)' is returned.
    * The returned rank (or index) of the member is 0-based for both commands.
    * <p>
    * <b>Time complexity:</b>
@@ -6644,7 +6644,7 @@ public class Jedis implements ServerCommands, DatabaseCommands, JedisCommands, J
    * @see Jedis#zrank(String, String)
    * @param key
    * @param member
-   * @return The element as an integer if the element exists. A 'nil' bulk reply if there is no such element.
+   * @return The element as an integer if the element exists. A 'nil(Java's null)' bulk reply if there is no such element.
    */
   @Override
   public Long zrevrank(final String key, final String member) {
@@ -6748,7 +6748,7 @@ public class Jedis implements ServerCommands, DatabaseCommands, JedisCommands, J
 
   /**
    * Return the score of the specified element of the sorted set at key. If the specified element
-   * does not exist in the sorted set, or the key does not exist at all, a special 'nil' value is
+   * does not exist in the sorted set, or the key does not exist at all, a special 'nil(Java's null)' value is
    * returned.
    * <p>
    * <b>Time complexity:</b> O(1)
@@ -6764,7 +6764,7 @@ public class Jedis implements ServerCommands, DatabaseCommands, JedisCommands, J
 
   /**
    * Returns the scores associated with the specified members in the sorted set stored at key. For
-   * every member that does not exist in the sorted set, a nil value is returned.
+   * every member that does not exist in the sorted set, a nil(Java's null) value is returned.
    * <p>
    * <b>Time complexity:</b> O(N) where N is the number of members being requested.
    * @param key
@@ -6993,7 +6993,7 @@ public class Jedis implements ServerCommands, DatabaseCommands, JedisCommands, J
    * Once new data is present on one of the lists, the connection finally returns with the name of the
    * key unblocking it and the popped value.
    * <p>
-   * When blocking, if a non-zero timeout is specified, the connection will unblock returning a nil
+   * When blocking, if a non-zero timeout is specified, the connection will unblock returning a nil(Java's null)
    * special value if the specified amount of seconds passed without a push operation against at
    * least one of the specified keys.
    * <p>
@@ -7011,7 +7011,7 @@ public class Jedis implements ServerCommands, DatabaseCommands, JedisCommands, J
    * in batch), but it does not make sense to use BLPOP or BRPOP inside a MULTI/EXEC block (a Redis
    * transaction).
    * <p>
-   * The behavior of BLPOP inside MULTI/EXEC when the list is empty is to return a multi-bulk nil
+   * The behavior of BLPOP inside MULTI/EXEC when the list is empty is to return a multi-bulk nil(Java's null)
    * reply, exactly what happens when the timeout is reached. If you like science fiction, think at
    * it like if inside MULTI/EXEC the time will flow at infinite speed :)
    * <p>
@@ -7023,7 +7023,7 @@ public class Jedis implements ServerCommands, DatabaseCommands, JedisCommands, J
    *         unblocking key and the popped value.
    *         <p>
          When a non-zero timeout is specified, and the BLPOP operation timed out, the return
-         value is a nil multi bulk reply. Most connection values will return false or nil
+         value is a nil(Java's null) multi bulk reply. Most connection values will return false or nil(Java's null)
          accordingly to the programming language used.
    */
   @Override
@@ -7067,7 +7067,7 @@ public class Jedis implements ServerCommands, DatabaseCommands, JedisCommands, J
    * Once new data is present on one of the lists, the connection finally returns with the name of the
    * key unblocking it and the popped value.
    * <p>
-   * When blocking, if a non-zero timeout is specified, the connection will unblock returning a nil
+   * When blocking, if a non-zero timeout is specified, the connection will unblock returning a nil(Java's null)
    * special value if the specified amount of seconds passed without a push operation against at
    * least one of the specified keys.
    * <p>
@@ -7085,7 +7085,7 @@ public class Jedis implements ServerCommands, DatabaseCommands, JedisCommands, J
    * in batch), but it does not make sense to use BLPOP or BRPOP inside a MULTI/EXEC block (a Redis
    * transaction).
    * <p>
-   * The behavior of BLPOP inside MULTI/EXEC when the list is empty is to return a multi-bulk nil
+   * The behavior of BLPOP inside MULTI/EXEC when the list is empty is to return a multi-bulk nil(Java's null)
    * reply, exactly what happens when the timeout is reached. If you like science fiction, think at
    * it like if inside MULTI/EXEC the time will flow at infinite speed :)
    * <p>
@@ -7097,7 +7097,7 @@ public class Jedis implements ServerCommands, DatabaseCommands, JedisCommands, J
    *         unblocking key and the popped value.
    *         <p>
          When a non-zero timeout is specified, and the BLPOP operation timed out, the return
-         value is a nil multi bulk reply. Most connection values will return false or nil
+         value is a nil(Java's null) multi bulk reply. Most connection values will return false or nil(Java's null)
          accordingly to the programming language used.
    */
   @Override

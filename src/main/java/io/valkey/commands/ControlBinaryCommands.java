@@ -77,7 +77,7 @@ public interface ControlBinaryCommands extends AccessControlLogBinaryCommands, C
    * See for details: <a href="https://redis.io/commands/memory-usage">MEMORY USAGE key</a>
    *
    * @param key The key in Redis server
-   * @return The memory usage in bytes, or nil when the key does not exist
+   * @return The memory usage in bytes, or nil(Java's null) when the key does not exist
    */
   Long memoryUsage(byte[] key);
 
@@ -89,7 +89,7 @@ public interface ControlBinaryCommands extends AccessControlLogBinaryCommands, C
    * See for details: <a href="https://redis.io/commands/memory-usage">MEMORY USAGE key SAMPLES count</a>
    *
    * @param key The key in Redis server
-   * @return The memory usage in bytes, or nil when the key does not exist
+   * @return The memory usage in bytes, or nil(Java's null) when the key does not exist
    */
   Long memoryUsage(byte[] key, int samples);
 

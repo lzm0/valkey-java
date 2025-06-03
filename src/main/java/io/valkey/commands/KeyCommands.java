@@ -608,7 +608,7 @@ public interface KeyCommands {
    * Return a randomly selected key from the currently selected DB.
    * <p>
    * Time complexity: O(1)
-   * @return The random key, or {@code nil} when the database is empty
+   * @return The random key, or {@code nil(Java's null)} when the database is empty
    */
   String randomKey();
 

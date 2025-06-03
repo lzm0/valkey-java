@@ -78,7 +78,7 @@ public interface ControlCommands extends AccessControlLogCommands, ClientCommand
    * See for details: <a href="https://redis.io/commands/memory-usage">MEMORY USAGE key</a>
    *
    * @param key The key in Redis server
-   * @return The memory usage in bytes, or {@code nil} when the key does not exist
+   * @return The memory usage in bytes, or {@code nil(Java's null)} when the key does not exist
    */
   Long memoryUsage(String key);
 
@@ -90,7 +90,7 @@ public interface ControlCommands extends AccessControlLogCommands, ClientCommand
    * See for details: <a href="https://redis.io/commands/memory-usage">MEMORY USAGE key SAMPLES count</a>
    *
    * @param key The key in Redis server
-   * @return The memory usage in bytes, or {@code nil} when the key does not exist
+   * @return The memory usage in bytes, or {@code nil(Java's null)} when the key does not exist
    */
   Long memoryUsage(String key, int samples);
 
