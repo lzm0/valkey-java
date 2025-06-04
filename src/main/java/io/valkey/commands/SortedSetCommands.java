@@ -129,13 +129,13 @@ public interface SortedSetCommands {
    * Return the rank (or index) of member in the sorted set at key, with scores being ordered from
    * low to high.
    * <p>
-   * When the given member does not exist in the sorted set, the special value 'nil' is returned.
+   * When the given member does not exist in the sorted set, the special value 'nil(Java's null)' is returned.
    * The returned rank (or index) of the member is 0-based for both commands.
    * <p>
    * Time complexity O(log(N))
    * @param key
    * @param member
-   * @return The rank of the element as an integer reply if the element exists. A nil bulk reply
+   * @return The rank of the element as an integer reply if the element exists. A nil(Java's null) bulk reply
    * if there is no such element
    */
   Long zrank(String key, String member);
@@ -144,13 +144,13 @@ public interface SortedSetCommands {
    * Return the rank (or index) of member in the sorted set at key, with scores being ordered from
    * high to low.
    * <p>
-   * When the given member does not exist in the sorted set, the special value 'nil' is returned.
+   * When the given member does not exist in the sorted set, the special value 'nil(Java's null)' is returned.
    * The returned rank (or index) of the member is 0-based for both commands.
    * <p>
    * Time complexity O(log(N))
    * @param key
    * @param member
-   * @return The rank of the element as an integer reply if the element exists. A nil bulk reply
+   * @return The rank of the element as an integer reply if the element exists. A nil(Java's null) bulk reply
    * if there is no such element
    */
   Long zrevrank(String key, String member);
@@ -289,7 +289,7 @@ public interface SortedSetCommands {
 
   /**
    * Return the score of the specified element of the sorted set at key. If the specified element
-   * does not exist in the sorted set, or the key does not exist at all, a special 'nil' value is
+   * does not exist in the sorted set, or the key does not exist at all, a special 'nil(Java's null)' value is
    * returned.
    * <p>
    * Time complexity O(1)
@@ -301,7 +301,7 @@ public interface SortedSetCommands {
 
   /**
    * Return the scores associated with the specified members in the sorted set stored at key.
-   * For every member that does not exist in the sorted set, a nil value is returned.
+   * For every member that does not exist in the sorted set, a nil(Java's null) value is returned.
    * <p>
    * Time complexity O(N) where N is the number of members being requested
    * @param key

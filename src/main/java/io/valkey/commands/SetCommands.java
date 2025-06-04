@@ -44,14 +44,14 @@ public interface SetCommands {
 
   /**
    * Remove a random element from a Set returning it as return value. If the Set is empty or the key
-   * does not exist, a nil object is returned.
+   * does not exist, a nil(Java's null) object is returned.
    * <p>
    * The {@link SetCommands#srandmember(String)} command does a similar work but the returned element is
    * not removed from the Set.
    * <p>
    * Time complexity O(1)
    * @param key
-   * @return The removed member, or nil when key does not exist
+   * @return The removed member, or nil(Java's null) when key does not exist
    */
   String spop(String key);
 
@@ -99,7 +99,7 @@ public interface SetCommands {
 
   /**
    * Return a random element from a Set, without removing the element. If the Set is empty or the
-   * key does not exist, a nil object is returned.
+   * key does not exist, a nil(Java's null) object is returned.
    * <p>
    * The {@link SetCommands#spop(String) SPOP} command does a similar work but the returned element
    * is popped (removed) from the Set.

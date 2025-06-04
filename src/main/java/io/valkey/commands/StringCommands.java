@@ -36,7 +36,7 @@ public interface StringCommands extends BitCommands {
 
   /**
    * <b><a href="http://redis.io/commands/get">Get Command</a></b>
-   * Get the value of the specified key. If the key does not exist the special value 'nil' is
+   * Get the value of the specified key. If the key does not exist the special value 'nil(Java's null)' is
    * returned. If the value stored at key is not a string an error is returned because GET can only
    * handle string values.
    * <p>
@@ -163,7 +163,7 @@ public interface StringCommands extends BitCommands {
   /**
    * <b><a href="http://redis.io/commands/mget">MGet Command</a></b>
    * Get the values of all the specified keys. If one or more keys don't exist or is not of type
-   * String, a 'nil' value is returned instead of the value of the specified key, but the operation
+   * String, a 'nil(Java's null)' value is returned instead of the value of the specified key, but the operation
    * never fails.
    * <p>
    * Time complexity: O(1) for every key

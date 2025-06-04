@@ -116,7 +116,7 @@ public interface ListCommands {
    * and so on.
    * <p>
    * If the value stored at key is not of list type an error is returned. If the index is out of
-   * range a 'nil' reply is returned.
+   * range a 'nil(Java's null)' reply is returned.
    * <p>
    * Note that even if the average time complexity is O(n) asking for the first or the last element
    * of the list is O(1).
@@ -168,7 +168,7 @@ public interface ListCommands {
    * if the list contains the elements "a","b","c" LPOP will return "a" and the list will become
    * "b","c".
    * <p>
-   * If the key does not exist or the list is already empty the special value 'nil' is returned.
+   * If the key does not exist or the list is already empty the special value 'nil(Java's null)' is returned.
    * @param key
    * @return The popped element
    */
@@ -180,19 +180,19 @@ public interface ListCommands {
    * "b","c".
    * @param key
    * @param count
-   * @return A list of popped elements, or 'nil' when key does not exist
+   * @return A list of popped elements, or 'nil(Java's null)' when key does not exist
    */
   List<String> lpop(String key, int count);
 
   /**
    * Returns the index of the first matching element inside a redis list. If the element is found,
    * its index (the zero-based position in the list) is returned. Otherwise, if no match is found,
-   * 'nil' is returned.
+   * 'nil(Java's null)' is returned.
    * <p>
    * Time complexity: O(N) where N is the number of elements in the list
    * @param key
    * @param element
-   * @return The index of first matching element in the list. Value will be 'nil' when the element
+   * @return The index of first matching element in the list. Value will be 'nil(Java's null)' when the element
    * is not present in the list
    */
   Long lpos(String key, String element);
@@ -211,13 +211,13 @@ public interface ListCommands {
    * @param key
    * @param element
    * @param params {@link LPosParams}
-   * @return The integer representing the matching element, or 'nil' if there is no match
+   * @return The integer representing the matching element, or 'nil(Java's null)' if there is no match
    */
   Long lpos(String key, String element, LPosParams params);
 
   /**
    * Returns the index of matching elements inside a Redis list. If the element is found, its index
-   * (the zero-based position in the list) is returned. Otherwise, if no match is found, nil is returned.
+   * (the zero-based position in the list) is returned. Otherwise, if no match is found, nil(Java's null) is returned.
    * <p>
    * Time complexity: O(N) where N is the number of elements in the list
    * @param key
@@ -243,7 +243,7 @@ public interface ListCommands {
    * "b","c".
    * @param key
    * @param count return up to count elements
-   * @return A list of count popped elements, or 'nil' when key does not exist.
+   * @return A list of count popped elements, or 'nil(Java's null)' when key does not exist.
    */
   List<String> rpop(String key, int count);
 
@@ -346,7 +346,7 @@ public interface ListCommands {
    * elements "a","b","c" and the destination list contains the elements "foo","bar" after an
    * RPOPLPUSH command the content of the two lists will be "a","b" and "c","foo","bar".
    * <p>
-   * If the key does not exist or the list is already empty the special value 'nil' is returned. If
+   * If the key does not exist or the list is already empty the special value 'nil(Java's null)' is returned. If
    * the srckey and dstkey are the same the operation is equivalent to removing the last element
    * from the list and pushing it as first element of the list, so it's a "list rotation" command.
    * <p>
