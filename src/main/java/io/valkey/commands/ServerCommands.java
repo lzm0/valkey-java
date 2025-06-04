@@ -93,6 +93,8 @@ public interface ServerCommands {
 
   String bgsaveSchedule();
 
+  String bgsaveCancel();
+
   /**
    * Instruct Redis to start an Append Only File rewrite process. The rewrite will create a small
    * optimized version of the current Append Only File If BGREWRITEAOF fails, no data gets lost as
